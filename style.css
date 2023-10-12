@@ -3,22 +3,93 @@
   margin: 0;
   box-sizing: border-box;
 }
+:root {
+  /*Primary*/
 
+  --BrightBlue: hsl(220, 98%, 61%);
+  --CheckBackground: linear-gradient(
+    120deg,
+    hsl(192, 100%, 67%),
+    hsl(280, 87%, 65%)
+  );
+
+  /*Neutral*/
+
+  /*LightTheme*/
+
+  --VeryLightGray: hsl(0, 0%, 98%);
+  --VeryLightGrayishBlue: hsl(236, 33%, 92%);
+  --LightGrayishBlue: hsl(233, 11%, 84%);
+  --DarkGrayishBlue: hsl(236, 9%, 61%);
+  --VeryDarkGrayishBlue: hsl(235, 19%, 35%);
+
+  /*DarkTheme*/
+
+  --VeryDarkBlue: hsl(235, 21%, 11%);
+  --VeryDarkDesaturatedBlue: hsl(235, 24%, 19%);
+  --LightGrayishBlue: hsl(234, 39%, 85%);
+  --LightGrayishBluehover: hsl(236, 33%, 92%);
+  --DarkGrayishBlue: hsl(234, 11%, 52%);
+  --VeryDarkGrayishBlue: hsl(233, 14%, 35%);
+  --VeryDarkGrayishBlue: hsl(237, 14%, 26%);
+}
+body {
+  font-family: "JosefinSans", sans-serif;
+}
 .attribution {
   font-size: 11px;
   text-align: center;
 }
-.attribution a {
+.attributiona {
   color: hsl(228, 45%, 44%);
 }
 .MainCont {
   height: 300px;
-
   background: url("./images/bg-desktop-light.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
 }
-i {
-  font-size: 10px;
+.todo__header {
+  letter-spacing: 1rem;
   color: #ffffff;
+}
+.btn__mode i {
+  font-size: 2rem;
+}
+.todo__add {
+  background-color: var(--VeryLightGray);
+  border-radius: 5px;
+}
+input {
+  outline: none;
+  background-color: transparent;
+  border: none;
+}
+input[type="radio"] {
+  display: none;
+}
+input[type="radio"] ~ label span {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 1px solid var(--DarkGrayishBlue);
+  cursor: pointer;
+}
+input[type="radio"]:checked ~ label span {
+  background: url("./images/icon-check.svg");
+  background-image: var(--CheckBackground);
+  background-repeat: no-repeat;
+}
+input[type="radio"]:hover ~ label span {
+  border-color: hsl(192, 100%, 67%) hsl(280, 87%, 65%) hsl(280, 87%, 65%)
+    hsl(192, 100%, 67%);
+}
+.todo__list {
+  transform: translateY(-50px);
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
 }
