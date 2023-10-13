@@ -34,8 +34,14 @@
   --VeryDarkGrayishBlue: hsl(237, 14%, 26%);
 }
 body {
-  font-family: "JosefinSans", sans-serif;
+  font-family: "Josefin Sans", sans-serif;
+  /* font-family: "Public Sans", sans-serif; */
 }
+.dark {
+  background: var(--VeryDarkBlue);
+  color: var(--LightGrayishBlue);
+}
+
 .attribution {
   font-size: 11px;
   text-align: center;
@@ -53,26 +59,48 @@ body {
   justify-content: center;
   font-size: 2.5rem;
 }
+.dark .MainCont {
+  background: url("./images/bg-desktop-dark.jpg");
+}
 .todo__header {
   letter-spacing: 1rem;
   color: #ffffff;
 }
 .btn__mode i {
   font-size: 2rem;
+  cursor: pointer;
+}
+.btn__mode:active i {
+  font-size: 1.8rem;
 }
 .todo__add {
   background-color: var(--VeryLightGray);
   border-radius: 5px;
 }
+.dark .todo__add {
+  background-color: var(--VeryDarkDesaturatedBlue);
+}
+.dark input {
+  color: var(--LightGrayishBlue);
+}
+.list-group-item {
+  border-width: 1px 0px;
+}
+.dark .list-group .list-group-item {
+  background-color: var(--VeryDarkDesaturatedBlue);
+  color: var(--LightGrayishBlue);
+  border-color: var(--VeryDarkGrayishBlue);
+}
 input {
   outline: none;
   background-color: transparent;
   border: none;
+  font-size: 1.5rem;
 }
-input[type="radio"] {
+input[type="checkbox"] {
   display: none;
 }
-input[type="radio"] ~ label span {
+input[type="checkbox"] ~ label span {
   display: inline-block;
   width: 25px;
   height: 25px;
@@ -80,12 +108,12 @@ input[type="radio"] ~ label span {
   border: 1px solid var(--DarkGrayishBlue);
   cursor: pointer;
 }
-input[type="radio"]:checked ~ label span {
+input[type="checkbox"]:checked ~ label span {
   background: url("./images/icon-check.svg");
   background-image: var(--CheckBackground);
   background-repeat: no-repeat;
 }
-input[type="radio"]:hover ~ label span {
+input[type="checkbox"]:hover ~ label span {
   border-color: hsl(192, 100%, 67%) hsl(280, 87%, 65%) hsl(280, 87%, 65%)
     hsl(192, 100%, 67%);
 }

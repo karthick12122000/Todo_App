@@ -35,10 +35,12 @@
         class="col-10 col-md-8 col-lg-5 fw-bold todo__header d-flex justify-content-between mb-4"
       >
         <span>TODO</span>
-        <span class="btn__mode"><i class="bi bi-moon"></i></span>
+        <span class="btn__mode" data-Dark="false"
+          ><i class="bi bi-moon-fill"></i
+        ></span>
       </div>
       <div class="col-10 col-md-8 col-lg-5 todo__add">
-          <input type="radio" id="enter" />
+          <input type="checkbox" id="enter" />
         <label for="enter"> <span></span></label>
         <input type="text" id="taskinp" />
       </div>
@@ -46,32 +48,35 @@
     <section class="listCont d-flex align-items-center flex-column">
       <ul class="list-group col-10 col-md-8 col-lg-5 todo__list">
         <li class="list-group-item p-3">
-          <input type="radio" id="1" />
+          <input type="checkbox" id="1" />
           <label for="1"> <span></span></label
           ><span class="p-3">A third item</span>
         </li>
         <li class="list-group-item">
-          <input type="radio" id="2" /> <label for="2"> <span></span></label
+          <input type="checkbox" id="2" /> <label for="2"> <span></span></label
           ><span class="p-3">A third item</span>
         </li>
         <li class="list-group-item">
-          <input type="radio" id="6" /> <label for="6"> <span></span></label
+          <input type="checkbox" id="6" /> <label for="6"> <span></span></label
           ><span class="p-3">A third item</span>
         </li>
         <li class="list-group-item">
-          <input type="radio" id="3" /> <label for="3"> <span></span></label
+          <input type="checkbox" id="3" /> <label for="3"> <span></span></label
           ><span class="p-3">A third item</span>
         </li>
         <li class="list-group-item">
-          <input type="radio" id="4" /> <label for="4"> <span></span></label
+          <input type="checkbox" name="" id="4" />
+          <label for="4"> <span></span></label
           ><span class="p-3">A third item</span>
+        </li>
+        <li class="list-group-item">
+          left All Active Completed Clear Completed
         </li>
       </ul>
     </section>
 
     <!-- Add dynamic number -->
-    items left All Active Completed Clear Completed Drag and drop to reorder
-    list
+    <p class="text-center">Drag and drop to reorder list</p>
 
     <div class="attribution">
       Challenge by
@@ -84,5 +89,6 @@
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
       crossorigin="anonymous"
     ></script>
+    <script src="./index.js"></script>
   </body>
 </html>
