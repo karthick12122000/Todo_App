@@ -61,6 +61,8 @@ body {
 }
 .dark .MainCont {
   background: url("./images/bg-desktop-dark.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .todo__header {
   letter-spacing: 1rem;
