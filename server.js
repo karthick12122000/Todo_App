@@ -3,6 +3,7 @@ var app = express();
 var port = process.env.PORT || 3000;
 const cors = require("cors");
 app.use(cors());
+app.use(express.json());
 const mongoose = require("mongoose");
 mongoose.connect("mongodb://localhost:27017/todo-app");
 mongoose.connection.on("connected", () => {
@@ -19,6 +20,18 @@ app.get("/todos", async (req, res) => {
   var Todos = await Todo.find();
 
   res.send(Todos);
+});
+app.post("/todo", async (req, res) => {
+  var newTodo = new Todo({
+    task: req.body.task,
+    done: false,
+  });
+  try {
+    let resp = await newTodo.save();
+    res.send(resp);
+  } catch (err) {
+    res.send("erroe:" + err);
+  }
 });
 app.listen(port, () => {
   console.log("Server Started at " + port);
