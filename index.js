@@ -53,10 +53,33 @@ async function fetchTodos() {
         '"> <span></span></label><span class="p-3">' +
         n.task +
         "</span> </li>";
-      console.log(n);
     });
   } catch (err) {
     console.log(err);
   }
 }
 fetchTodos();
+/////////////////--------------------------------
+var Add = document.getElementById("enter");
+Add.addEventListener("click", async () => {
+  let value = document.querySelector("#taskinp");
+  try {
+    const response = await fetch("http://localhost:3000/todo", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ task: value.value }),
+    });
+    if (!response.ok) {
+      throw new Error(`Request failed with status: ${response.status}`);
+    }
+    const data = await response.json();
+    console.log(data);
+    fetchTodos();
+  } catch (err) {
+    console.error("Error:", err);
+  }
+  value.value = "";
+  Add.checked = false;
+});
