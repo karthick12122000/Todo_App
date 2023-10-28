@@ -38,6 +38,7 @@ async function fetchTodos() {
     }
     var todos = await response.json();
     var Todo_list = document.querySelector(".todo__list");
+    Todo_list.innerHTML = "";
     todos.forEach((n) => {
       var done = "";
       if (n.done == true) {
@@ -48,7 +49,7 @@ async function fetchTodos() {
         n._id +
         '" ' +
         done +
-        '/><label for="' +
+        ' onchange="taskStatus(this)"/><label for="' +
         n._id +
         '"> <span></span></label><span class="p-3">' +
         n.task +
@@ -61,25 +62,46 @@ async function fetchTodos() {
 fetchTodos();
 /////////////////--------------------------------
 var Add = document.getElementById("enter");
-Add.addEventListener("click", async () => {
+Add.addEventListener("change", async () => {
   let value = document.querySelector("#taskinp");
+  if (value.value != null && value.value != "") {
+    try {
+      const response = await fetch("http://localhost:3000/todo", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ task: value.value }),
+      });
+      if (!response.ok) {
+        throw new Error(`Request failed with status: ${response.status}`);
+      }
+      const data = await response.json();
+
+      fetchTodos();
+    } catch (err) {
+      console.error("Error:", err);
+    }
+  }
+  value.value = "";
+  Add.checked = false;
+});
+/////////////////--------------------------------
+
+var taskStatus = async function (e) {
   try {
-    const response = await fetch("http://localhost:3000/todo", {
-      method: "POST",
+    const response = await fetch("http://localhost:3000/todo/" + e.id, {
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ task: value.value }),
+      body: JSON.stringify({ done: e.checked }),
     });
     if (!response.ok) {
       throw new Error(`Request failed with status: ${response.status}`);
     }
     const data = await response.json();
-    console.log(data);
-    fetchTodos();
   } catch (err) {
     console.error("Error:", err);
   }
-  value.value = "";
-  Add.checked = false;
-});
+};
