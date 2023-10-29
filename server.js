@@ -8,7 +8,9 @@ app.use(cors());
 app.use(express.json());
 
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost:27017/todo-app");
+const uri =
+  "mongodb+srv://karthick:123456789kar@atlascluster.mjn1iim.mongodb.net/?retryWrites=true&w=majority";
+mongoose.connect(uri);
 mongoose.connection.on("connected", () => {
   console.log("MongoDB Connected");
 });
