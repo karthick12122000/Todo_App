@@ -127,3 +127,6 @@ input[type="checkbox"]:hover ~ label span {
   text-decoration: line-through;
   color: var(--DarkGrayishBlue);
 }
+.clear {
+  cursor: pointer;
+}

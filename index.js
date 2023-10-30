@@ -28,7 +28,7 @@ if (localStorage.getItem("dark-mode") === "true") {
   ModeBtn.dataset.dark = "true";
   ModeBtn.querySelector("i").className = "bi bi-brightness-high-fill";
 }
-//////////////////////----------------------
+//////////////////////----------------------Get
 async function fetchTodos() {
   try {
     var response = await fetch("http://localhost:3000/todos", {});
@@ -39,10 +39,13 @@ async function fetchTodos() {
     var todos = await response.json();
     var Todo_list = document.querySelector(".todo__list");
     Todo_list.innerHTML = "";
+    var activeTask = 0;
     todos.forEach((n) => {
       var done = "";
       if (n.done == true) {
         var done = "Checked";
+      } else {
+        activeTask += 1;
       }
       Todo_list.innerHTML +=
         '     <li class="list-group-item p-3"> <input type="checkbox" class="task" id="' +
@@ -55,12 +58,17 @@ async function fetchTodos() {
         n.task +
         "</span> </li>";
     });
+
+    Todo_list.innerHTML +=
+      '<li class="list-group-item d-flex"><p class="col-4 text-center">' +
+      activeTask +
+      ' items left</p> <div class="col-4 d-flex gap-3 justify-content-center"><p>All</p> <p>Active</p> <p>Completed</p></div> <p class="col-4 text-center clear" onclick="clearCompletedtask()">Clear Completed</p>  </li>';
   } catch (err) {
     console.log(err);
   }
 }
 fetchTodos();
-/////////////////--------------------------------
+/////////////////--------------------------------Post
 var Add = document.getElementById("enter");
 Add.addEventListener("change", async () => {
   let value = document.querySelector("#taskinp");
@@ -86,7 +94,7 @@ Add.addEventListener("change", async () => {
   value.value = "";
   Add.checked = false;
 });
-/////////////////--------------------------------
+/////////////////--------------------------------Update
 
 var taskStatus = async function (e) {
   try {
@@ -105,3 +113,20 @@ var taskStatus = async function (e) {
     console.error("Error:", err);
   }
 };
+//////////////------------------------delete
+var clearCompletedtask = async () => {
+  try {
+    const response = await fetch("http://localhost:3000/todo/", {
+      method: "Delete",
+    });
+    if (!response.ok) {
+      throw new Error(`Request failed with status: ${response.status}`);
+    }
+    const data = await response.json();
+    console.log(data);
+    fetchTodos();
+  } catch (err) {
+    console.error("Error:", err);
+  }
+};
+//

@@ -9,7 +9,7 @@ app.use(express.json());
 
 const mongoose = require("mongoose");
 const uri =
-  "mongodb+srv://karthick:123456789kar@atlascluster.mjn1iim.mongodb.net/?retryWrites=true&w=majority";
+  "mongodb+srv://karthick:123456789kar@atlascluster.mjn1iim.mongodb.net/todos?retryWrites=true&w=majority";
 mongoose.connect(uri);
 mongoose.connection.on("connected", () => {
   console.log("MongoDB Connected");
@@ -49,5 +49,10 @@ app.put("/todo/:id", async (req, res) => {
   taskId = req.params.id;
   flag = req.body.done;
   let resp = await Todo.updateOne({ _id: taskId }, { done: flag });
+  res.send(resp);
+});
+///////////////----------update
+app.delete("/todo", async (req, res) => {
+  let resp = await Todo.deleteMany({ done: true });
   res.send(resp);
 });
