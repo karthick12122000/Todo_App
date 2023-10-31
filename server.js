@@ -51,8 +51,13 @@ app.put("/todo/:id", async (req, res) => {
   let resp = await Todo.updateOne({ _id: taskId }, { done: flag });
   res.send(resp);
 });
-///////////////----------update
+///////////////----------Delete
 app.delete("/todo", async (req, res) => {
   let resp = await Todo.deleteMany({ done: true });
+  res.send(resp);
+});
+///////////////----------Delete One
+app.delete("/todo/:id", async (req, res) => {
+  let resp = await Todo.deleteOne({ _id: ObjectId(req.params.id) });
   res.send(resp);
 });

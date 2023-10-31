@@ -129,4 +129,19 @@ var clearCompletedtask = async () => {
     console.error("Error:", err);
   }
 };
-//
+////////////////------------------------delete single record
+var deleteRec = async (e) => {
+  try {
+    const response = await fetch("http://localhost:3000/todo/"+e.id, {
+      method: "Delete",
+    });
+    if (!response.ok) {
+      throw new Error(`Request failed with status: ${response.status}`);
+    }
+    const data = await response.json();
+    console.log(data);
+    fetchTodos();
+  } catch (err) {
+    console.error("Error:", err);
+  }
+};
