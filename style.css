@@ -130,3 +130,19 @@ input[type="checkbox"]:hover ~ label span {
 .clear {
   cursor: pointer;
 }
+.list-group-item {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+}
+.btn-close {
+  right: 10px;
+  display: none;
+}
+.btn-close:focus {
+  box-shadow: none;
+}
+.list-group-item:hover .btn-close {
+  display: initial;
+}

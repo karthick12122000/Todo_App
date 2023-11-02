@@ -48,7 +48,7 @@ async function fetchTodos() {
         activeTask += 1;
       }
       Todo_list.innerHTML +=
-        '     <li class="list-group-item p-3"> <input type="checkbox" class="task" id="' +
+        '     <li class="list-group-item p-3 position-relative"> <input type="checkbox" class="task " id="' +
         n._id +
         '" ' +
         done +
@@ -56,7 +56,9 @@ async function fetchTodos() {
         n._id +
         '"> <span></span></label><span class="p-3">' +
         n.task +
-        "</span> </li>";
+        "</span> <button type='button' class='btn-close btn-close-white position-absolute' aria-label='Close' onclick='deleteRec(this)' data-id='" +
+        n._id +
+        "'></button></li>";
     });
 
     Todo_list.innerHTML +=
@@ -116,7 +118,7 @@ var taskStatus = async function (e) {
 //////////////------------------------delete
 var clearCompletedtask = async () => {
   try {
-    const response = await fetch("http://localhost:3000/todo/", {
+    const response = await fetch("http://localhost:3000/todos/", {
       method: "Delete",
     });
     if (!response.ok) {
@@ -131,10 +133,14 @@ var clearCompletedtask = async () => {
 };
 ////////////////------------------------delete single record
 var deleteRec = async (e) => {
+  console.log(e.getAttribute("data-id"));
   try {
-    const response = await fetch("http://localhost:3000/todo/"+e.id, {
-      method: "Delete",
-    });
+    const response = await fetch(
+      "http://localhost:3000/todo/" + e.getAttribute("data-id"),
+      {
+        method: "Delete",
+      }
+    );
     if (!response.ok) {
       throw new Error(`Request failed with status: ${response.status}`);
     }

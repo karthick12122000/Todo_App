@@ -52,12 +52,12 @@ app.put("/todo/:id", async (req, res) => {
   res.send(resp);
 });
 ///////////////----------Delete
-app.delete("/todo", async (req, res) => {
+app.delete("/todos", async (req, res) => {
   let resp = await Todo.deleteMany({ done: true });
   res.send(resp);
 });
 ///////////////----------Delete One
 app.delete("/todo/:id", async (req, res) => {
-  let resp = await Todo.deleteOne({ _id: ObjectId(req.params.id) });
+  let resp = await Todo.deleteOne({ _id: req.params.id });
   res.send(resp);
 });
