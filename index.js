@@ -48,7 +48,7 @@ async function fetchTodos() {
         activeTask += 1;
       }
       Todo_list.innerHTML +=
-        '     <li class="list-group-item p-3 position-relative"> <input type="checkbox" class="task " id="' +
+        '     <li class="list-group-item p-3 position-relative" draggable="true" ondragstart="drag(event)"> <input type="checkbox" class="task " id="' +
         n._id +
         '" ' +
         done +
@@ -133,7 +133,6 @@ var clearCompletedtask = async () => {
 };
 ////////////////------------------------delete single record
 var deleteRec = async (e) => {
-  console.log(e.getAttribute("data-id"));
   try {
     const response = await fetch(
       "http://localhost:3000/todo/" + e.getAttribute("data-id"),
@@ -151,3 +150,39 @@ var deleteRec = async (e) => {
     console.error("Error:", err);
   }
 };
+////////----------------------drag and drop
+var dragSrcEl = null;
+
+function handleDragStart(e) {
+  dragSrcEl = this;
+  e.dataTransfer.effectAllowed = "move";
+  e.dataTransfer.setData("text/html", this.innerHTML);
+}
+
+function handleDragOver(e) {
+  if (e.preventDefault) {
+    e.preventDefault();
+  }
+  e.dataTransfer.dropEffect = "move";
+  return false;
+}
+
+function handleDrop(e) {
+  if (e.stopPropagation) {
+    e.stopPropagation();
+  }
+  if (dragSrcEl !== this) {
+    dragSrcEl.innerHTML = this.innerHTML;
+    this.innerHTML = e.dataTransfer.getData("text/html");
+  }
+  return false;
+}
+
+function drag(event) {
+  var cols = document.querySelectorAll("#todoList li");
+  cols.forEach((col) => {
+    col.addEventListener("dragstart", handleDragStart, false);
+    col.addEventListener("dragover", handleDragOver, false);
+    col.addEventListener("drop", handleDrop, false);
+  });
+}
