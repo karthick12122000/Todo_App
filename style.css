@@ -78,6 +78,17 @@ body {
 .todo__add {
   background-color: var(--VeryLightGray);
   border-radius: 5px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+#taskinp {
+  width: 90%;
+  height: inherit;
+}
+.todo__add input[type="checkbox"] ~ label {
+  width: 10%;
 }
 .dark .todo__add {
   background-color: var(--VeryDarkDesaturatedBlue);
@@ -130,10 +141,10 @@ input[type="checkbox"]:hover ~ label span {
 .clear {
   cursor: pointer;
 }
-.list-group-item {
+.todos {
   display: flex;
   align-items: center;
-
+  cursor: grab;
   gap: 10px;
 }
 .btn-close {
@@ -143,6 +154,6 @@ input[type="checkbox"]:hover ~ label span {
 .btn-close:focus {
   box-shadow: none;
 }
-.list-group-item:hover .btn-close {
+.todos:hover .btn-close {
   display: initial;
 }

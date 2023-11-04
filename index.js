@@ -48,7 +48,7 @@ async function fetchTodos() {
         activeTask += 1;
       }
       Todo_list.innerHTML +=
-        '     <li class="list-group-item p-3 position-relative" draggable="true" ondragstart="drag(event)"> <input type="checkbox" class="task " id="' +
+        '     <li class="list-group-item position-relative todos" draggable="true" ondragstart="drag(event)"> <input type="checkbox" class="task " id="' +
         n._id +
         '" ' +
         done +
