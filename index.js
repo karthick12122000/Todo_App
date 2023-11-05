@@ -62,9 +62,9 @@ async function fetchTodos() {
     });
 
     Todo_list.innerHTML +=
-      '<li class="list-group-item d-flex"><p class="col-4 text-center">' +
+      '<li class="list-group-item d-flex"><p class="col-6 col-md-4  text-center">' +
       activeTask +
-      ' items left</p> <div class="col-4 d-flex gap-3 justify-content-center"><p>All</p> <p>Active</p> <p>Completed</p></div> <p class="col-4 text-center clear" onclick="clearCompletedtask()">Clear Completed</p>  </li>';
+      ' items left</p> <div class="col-0 col-md-4 d-none d-md-flex gap-3 justify-content-center filter "><p class="active" onclick="filter(this)">All</p> <p onclick="filter(this)">Active</p> <p onclick="filter(this)">Completed</p></div> <p class="col-6 col-md-4 text-center clear" onclick="clearCompletedtask()">Clear Completed</p>  </li>';
   } catch (err) {
     console.log(err);
   }
@@ -111,12 +111,13 @@ var taskStatus = async function (e) {
       throw new Error(`Request failed with status: ${response.status}`);
     }
     const data = await response.json();
+    fetchTodos();
   } catch (err) {
     console.error("Error:", err);
   }
 };
 //////////////------------------------delete
-var clearCompletedtask = async () => {
+var clearCompletedtask = async function () {
   try {
     const response = await fetch("http://localhost:3000/todos/", {
       method: "Delete",
@@ -132,7 +133,7 @@ var clearCompletedtask = async () => {
   }
 };
 ////////////////------------------------delete single record
-var deleteRec = async (e) => {
+var deleteRec = async function (e) {
   try {
     const response = await fetch(
       "http://localhost:3000/todo/" + e.getAttribute("data-id"),
@@ -153,21 +154,21 @@ var deleteRec = async (e) => {
 ////////----------------------drag and drop
 var dragSrcEl = null;
 
-function handleDragStart(e) {
+var handleDragStart = function (e) {
   dragSrcEl = this;
   e.dataTransfer.effectAllowed = "move";
   e.dataTransfer.setData("text/html", this.innerHTML);
-}
+};
 
-function handleDragOver(e) {
+var handleDragOver = function (e) {
   if (e.preventDefault) {
     e.preventDefault();
   }
   e.dataTransfer.dropEffect = "move";
   return false;
-}
+};
 
-function handleDrop(e) {
+var handleDrop = function (e) {
   if (e.stopPropagation) {
     e.stopPropagation();
   }
@@ -176,13 +177,40 @@ function handleDrop(e) {
     this.innerHTML = e.dataTransfer.getData("text/html");
   }
   return false;
-}
+};
 
-function drag(event) {
+var drag = function (event) {
   var cols = document.querySelectorAll("#todoList li");
   cols.forEach((col) => {
     col.addEventListener("dragstart", handleDragStart, false);
     col.addEventListener("dragover", handleDragOver, false);
     col.addEventListener("drop", handleDrop, false);
   });
-}
+};
+////////////////////-------------------filter
+var filter = function (e) {
+  var active = document.querySelector(".active");
+  active.classList.remove("active");
+  var cols = document.querySelectorAll("#todoList li");
+  e.classList.add("active");
+  cols.forEach((col) => {
+    let checkedValue = col.querySelector("input[type='checkbox']");
+    if (checkedValue != null) {
+      if (e.innerText == "All") {
+        col.style.display = "initial";
+      } else if (e.innerText == "Active") {
+        if (checkedValue.checked === true) {
+          col.style.display = "none";
+        } else {
+          col.style.display = "initial";
+        }
+      } else if (e.innerText == "Completed") {
+        if (checkedValue.checked === true) {
+          col.style.display = "initial";
+        } else {
+          col.style.display = "none";
+        }
+      }
+    }
+  });
+};

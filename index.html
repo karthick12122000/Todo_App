@@ -51,15 +51,26 @@
         id="todoList"
       ></ul>
     </section>
+    <div class="fdiv d-flex justify-content-center d-md-none mb-4">
+      <div
+        class="col-10 col-md-8 col-lg-5 d-flex gap-3 justify-content-center align-items-center filter"
+      >
+        <p class="m-0 active" onclick="filter(this)">All</p>
+        <p class="m-0" onclick="filter(this)">Active</p>
+        <p class="m-0" onclick="filter(this)">Completed</p>
+      </div>
+    </div>
 
-    <!-- Add dynamic number -->
     <p class="text-center">Drag and drop to reorder list</p>
 
     <div class="attribution">
       Challenge by
       <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
         >Frontend Mentor</a
-      >. Coded by <a href="#">Your Name Here</a>.
+      >. Coded by
+      <a href="https://www.linkedin.com/in/karthick-kaliannan-68b763191/"
+        >Karthick</a
+      >.
     </div>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
