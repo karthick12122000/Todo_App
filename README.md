@@ -56,7 +56,9 @@ Users should be able to:
 
 ## About this project
 
-This full-stack Todo application allows users to efficiently manage their tasks with features such as adding, marking, and deleting todos, along with the ability to filter tasks by status. With a responsive design, users can seamlessly access the application from any device, and the option to toggle between light and dark mode provides a personalized viewing experience. Leveraging technologies such as MongoDB for database management and Express.js for server-side functionality, this project represents a significant milestone in my development journey, showcasing my proficiency in these technologies and marking my first full-stack application.
+- This full-stack Todo application allows users to efficiently manage their tasks with features such as adding, marking, and deleting todos, along with the ability to filter tasks by status. 
+- With a responsive design, users can seamlessly access the application from any device, and the option to toggle between light and dark mode provides a personalized viewing experience. 
+- Leveraging technologies such as MongoDB for database management and Express.js for server-side functionality, this project represents a significant milestone in my development journey, showcasing my proficiency in these technologies and marking my first full-stack application.
 
 ## Author
 
