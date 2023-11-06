@@ -1,5 +1,7 @@
 const express = require("express");
 var app = express();
+require("dotenv").config();
+
 var port = process.env.PORT || 3000;
 
 const cors = require("cors");
