@@ -35,7 +35,6 @@
 }
 body {
   font-family: "Josefin Sans", sans-serif;
-  /* font-family: "Public Sans", sans-serif; */
 }
 .dark {
   background: var(--VeryDarkBlue);
@@ -99,11 +98,15 @@ body {
 .list-group-item {
   border-width: 1px 0px;
 }
+.list-group .list-group-item {
+  color: var(--VeryDarkBlue);
+}
 .dark .list-group .list-group-item {
   background-color: var(--VeryDarkDesaturatedBlue);
   color: var(--LightGrayishBlue);
   border-color: var(--VeryDarkGrayishBlue);
 }
+
 input {
   outline: none;
   background-color: transparent;
