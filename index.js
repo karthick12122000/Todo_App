@@ -31,7 +31,7 @@ if (localStorage.getItem("dark-mode") === "true") {
 //////////////////////----------------------Get
 async function fetchTodos() {
   try {
-    var response = await fetch("http://localhost:3000/todos", {});
+    var response = await fetch("https://todo-app-817w.onrender.com/todos", {});
 
     if (!response.ok) {
       throw new Error("Network response was not ok");
@@ -76,7 +76,7 @@ Add.addEventListener("change", async () => {
   let value = document.querySelector("#taskinp");
   if (value.value != null && value.value != "") {
     try {
-      const response = await fetch("http://localhost:3000/todo", {
+      const response = await fetch("https://todo-app-817w.onrender.com/todo", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -100,13 +100,16 @@ Add.addEventListener("change", async () => {
 
 var taskStatus = async function (e) {
   try {
-    const response = await fetch("http://localhost:3000/todo/" + e.id, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ done: e.checked }),
-    });
+    const response = await fetch(
+      "https://todo-app-817w.onrender.com/todo/" + e.id,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ done: e.checked }),
+      }
+    );
     if (!response.ok) {
       throw new Error(`Request failed with status: ${response.status}`);
     }
@@ -119,7 +122,7 @@ var taskStatus = async function (e) {
 //////////////------------------------delete
 var clearCompletedtask = async function () {
   try {
-    const response = await fetch("http://localhost:3000/todos/", {
+    const response = await fetch("https://todo-app-817w.onrender.com/todos/", {
       method: "Delete",
     });
     if (!response.ok) {
@@ -136,7 +139,7 @@ var clearCompletedtask = async function () {
 var deleteRec = async function (e) {
   try {
     const response = await fetch(
-      "http://localhost:3000/todo/" + e.getAttribute("data-id"),
+      "https://todo-app-817w.onrender.com/todo/" + e.getAttribute("data-id"),
       {
         method: "Delete",
       }

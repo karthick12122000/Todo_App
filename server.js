@@ -10,8 +10,7 @@ app.use(cors());
 app.use(express.json());
 
 const mongoose = require("mongoose");
-const uri =
-  "mongodb+srv://karthick:123456789kar@atlascluster.mjn1iim.mongodb.net/todos?retryWrites=true&w=majority";
+const uri = process.env.MONGODB_CONNECT_URI;
 mongoose.connect(uri);
 mongoose.connection.on("connected", () => {
   console.log("MongoDB Connected");
