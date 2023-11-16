@@ -6,13 +6,9 @@ var port = process.env.PORT || 3000;
 
 const cors = require("cors");
 
-var corsOptions = {
-  origin: "https://karthick12122000.github.io/Todo_App/",
-  optionsSuccessStatus: 200,
-};
-app.use(cors(corsOptions));
 
-app.use(cros("*");
+
+app.use(cros("*"));
 
 
 app.use(express.json());
