@@ -83,11 +83,11 @@ body {
   gap: 10px;
 }
 #taskinp {
-  width: 90%;
+  width: 95%;
   height: inherit;
 }
 .todo__add input[type="checkbox"] ~ label {
-  width: 10%;
+  width:25px;
 }
 .dark .todo__add {
   background-color: var(--VeryDarkDesaturatedBlue);
